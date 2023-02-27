@@ -21,12 +21,19 @@
     <ProjectReference Include="..\Cryptopals\Cryptopals.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <None Remove="4.txt" />
-    <None Remove="6.txt" />
     <None Remove="6 %28copy%29.txt" />
     <None Remove="7 %28copy%29.txt" />
     <None Remove="8 %28copy%29.txt" />
     <None Remove="10 %28copy%29.txt" />
+    <None Remove="Files\" />
+    <None Remove="Input\10.txt" />
+    <None Remove="Input\10-test.txt" />
+    <None Remove="Input\12.txt" />
+    <None Remove="Input\4.txt" />
+    <None Remove="Input\6.txt" />
+    <None Remove="Input\6-loremipsum.txt" />
+    <None Remove="Input\7.txt" />
+    <None Remove="Input\8.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Update="4.txt">
@@ -34,29 +41,32 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="4.txt">
+    <EmbeddedResource Include="Input\10.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="6.txt">
+    <EmbeddedResource Include="Input\10-test.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="6-loremipsum.txt">
+    <EmbeddedResource Include="Input\12.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="7.txt">
+    <EmbeddedResource Include="Input\04.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="8.txt">
+    <EmbeddedResource Include="Input\06.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="10.txt">
+    <EmbeddedResource Include="Input\06-loremipsum.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="10-test.txt">
+    <EmbeddedResource Include="Input\07.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="12.txt">
+    <EmbeddedResource Include="Input\08.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Input\" />
   </ItemGroup>
 </Project>

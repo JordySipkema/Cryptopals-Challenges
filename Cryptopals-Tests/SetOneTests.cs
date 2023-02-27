@@ -51,7 +51,7 @@ public class SetOneTests
     public void Test_4_DetectSingleCharacterXOR()
     {
         // Arrange
-        var input = File.ReadAllLines("./4.txt").ToList();
+        var input = File.ReadAllLines("./Input/04.txt").ToList();
 
         // Act
         var result = XorBruteforce.DetectSingleCharacterXOR(input);
@@ -94,7 +94,7 @@ public class SetOneTests
     [TestMethod]
     public void Test_6b_FindHammingDistanceForKeysize()
     {
-        string inputB64 = File.ReadAllText("./6-loremipsum.txt");
+        string inputB64 = File.ReadAllText("./Input/06-loremipsum.txt");
         byte[] input = Convert.FromBase64String(inputB64);
 
         IEnumerable<int> possibleKeylengths = Enumerable.Range(2, 38); // Define a list with possible keysizes ( 2 to 40 incl )
@@ -122,7 +122,7 @@ public class SetOneTests
     public void Test_6d_BreakKnownCipherText()
     {
         // Arrange
-        string inputB64 = File.ReadAllText("./6-loremipsum.txt");
+        string inputB64 = File.ReadAllText("./Input/06-loremipsum.txt");
         byte[] input = Convert.FromBase64String(inputB64);
 
         IEnumerable<int> possibleKeylengths = Enumerable.Range(2, 38); // Define a list with possible keysizes ( 2 to 40 incl )
@@ -143,7 +143,7 @@ public class SetOneTests
     public void Test_6e_BreakCipherText()
     {
         // Arrange
-        string inputB64 = File.ReadAllText("./6.txt");
+        string inputB64 = File.ReadAllText("./Input/06.txt");
         byte[] input = Convert.FromBase64String(inputB64);
 
         IEnumerable<int> possibleKeylengths = Enumerable.Range(2, 38); // Define a list with possible keysizes ( 2 to 40 incl )
@@ -165,7 +165,7 @@ public class SetOneTests
     public void Test_7_DecryptAesEcb()
     {
         // Arrange
-        string inputB64 = File.ReadAllText("./7.txt");
+        string inputB64 = File.ReadAllText("./Input/07.txt");
         byte[] input = Convert.FromBase64String(inputB64);
         byte[] key = Encoding.UTF8.GetBytes("YELLOW SUBMARINE");
 
@@ -182,7 +182,7 @@ public class SetOneTests
     [TestMethod]
     public void Test_8_DetectAesEcb()
     {
-        List<byte[]> inputArray = File.ReadAllLines("./8.txt")
+        List<byte[]> inputArray = File.ReadAllLines("./Input/08.txt")
             .Select(Convert.FromHexString)
             .ToList();
 

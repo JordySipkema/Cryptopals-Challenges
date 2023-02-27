@@ -49,7 +49,7 @@ namespace Cryptopals_Tests
         public void Test_10a_AesEbcDecrypt()
         {
             // Arrange
-            string inputB64 = File.ReadAllText("./7.txt");
+            string inputB64 = File.ReadAllText("./Input/07.txt");
             byte[] input = Convert.FromBase64String(inputB64);
             byte[] key = Encoding.UTF8.GetBytes("YELLOW SUBMARINE");
 
@@ -65,7 +65,7 @@ namespace Cryptopals_Tests
         public void Test_10b_AesCbcDecrypt()
         {
             // Arrange
-            string inputB64 = File.ReadAllText("./10.txt");
+            string inputB64 = File.ReadAllText("./Input/10.txt");
             byte[] input = Convert.FromBase64String(inputB64);
             byte[] key = Encoding.UTF8.GetBytes("YELLOW SUBMARINE");
             byte[] iv = new byte[16];
@@ -82,7 +82,7 @@ namespace Cryptopals_Tests
         public void Test_10c_AesCbcEncrypt()
         {
             // Arrange
-            string inputB64 = File.ReadAllText("./10-test.txt");
+            string inputB64 = File.ReadAllText("./Input/10-test.txt");
             byte[] input = Convert.FromBase64String(inputB64);
             byte[] key = Encoding.UTF8.GetBytes("YELLOW SUBMARINE");
             byte[] iv = new byte[16];
@@ -99,8 +99,7 @@ namespace Cryptopals_Tests
         [TestMethod]
         public void Test_11_DetectRandomCrypto()
         {
-            string inputB64 = File.ReadAllText("./10-test.txt");
-            byte[] input = Convert.FromBase64String(inputB64);
+            byte[] input = new byte[256];
 
             for (int it = 0; it < 10; it++)
             {
