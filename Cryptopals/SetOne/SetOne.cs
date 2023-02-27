@@ -3,10 +3,10 @@ using System.Text;
 
 namespace Cryptopals.SetOne
 {
-	public static class Utils
-	{
-		public static string ConvertHexToBase64(string hexString)
-		{
+    public static class Utils
+    {
+        public static string ConvertHexToBase64(string hexString)
+        {
             // hex-string is converted to byte-array
             byte[] stringBytes = Convert.FromHexString(hexString);
 
@@ -15,6 +15,6 @@ namespace Cryptopals.SetOne
 
             return res;
         }
-	}
+    }
 }
 

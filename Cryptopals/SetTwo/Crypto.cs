@@ -3,25 +3,25 @@ using System.Security.Cryptography;
 
 namespace Cryptopals.SetTwo
 {
-	public class Crypto
-	{
-		public Crypto()
-		{
-		}
+    public class Crypto
+    {
+        public Crypto()
+        {
+        }
 
-		public static byte[] PadBlock(byte[] block, int blocksize)
-		{
+        public static byte[] PadBlock(byte[] block, int blocksize)
+        {
             int length = block.Length;
             int modLen = length % blocksize;
             int paddingToAdd = blocksize - modLen;
 
-			Span<byte> destination = new byte[length + paddingToAdd];
+            Span<byte> destination = new byte[length + paddingToAdd];
 
             block.CopyTo(destination);
             destination.Slice(length, paddingToAdd).Fill((byte)paddingToAdd);
 
-			return destination.ToArray();
-		}
+            return destination.ToArray();
+        }
 
         public static byte[] UnpadBlock(byte[] block)
         {
