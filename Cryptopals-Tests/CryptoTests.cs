@@ -6,20 +6,20 @@ using Cryptopals.SetOne;
 
 namespace Cryptopals_Tests
 {
-	[TestClass]
+    [TestClass]
     public class CryptoTests
-	{
+    {
         public CryptoTests() { }
 
-		[TestMethod]
-		public void Test_09_ImplementPkcs7Padding_A()
-		{
-			byte[] input = Encoding.UTF8.GetBytes("YELLOW SUBMARINE");
-			byte[] expected = Encoding.UTF8.GetBytes("YELLOW SUBMARINE\x04\x04\x04\x04");
+        [TestMethod]
+        public void Test_09_ImplementPkcs7Padding_A()
+        {
+            byte[] input = Encoding.UTF8.GetBytes("YELLOW SUBMARINE");
+            byte[] expected = Encoding.UTF8.GetBytes("YELLOW SUBMARINE\x04\x04\x04\x04");
 
-			byte[] result = Crypto.PadBlock(input, 20);
+            byte[] result = Crypto.PadBlock(input, 20);
 
-			result.Should().BeEquivalentTo(expected);
+            result.Should().BeEquivalentTo(expected);
         }
 
         [TestMethod]

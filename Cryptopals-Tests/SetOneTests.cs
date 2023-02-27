@@ -175,7 +175,7 @@ public class SetOneTests
         byte[] decrypted = aes.DecryptEcb(input, PaddingMode.None);
 
         // Assert
-        BruteforceResult result = new() {  Decoded = decrypted, Key = key };
+        BruteforceResult result = new() { Decoded = decrypted, Key = key };
         result.DecodedStr.Should().StartWithEquivalentOf("I'm back and I'm ringin' the bell");
     }
 
@@ -198,20 +198,20 @@ public class SetOneTests
 
     private bool hasRepeatingPatterns(byte[] input, int chunkSize = 16)
     {
-            var chunks = input.Chunk(chunkSize);
-            List<byte[]> seen = new();
+        var chunks = input.Chunk(chunkSize);
+        List<byte[]> seen = new();
 
-            foreach (byte[] chunk in chunks)
-            {
-                if (seen.Any(x => x.SequenceEqual(chunk)))
-                    return true;
+        foreach (byte[] chunk in chunks)
+        {
+            if (seen.Any(x => x.SequenceEqual(chunk)))
+                return true;
 
-                seen.Add(chunk);
-            }
-            return false;
+            seen.Add(chunk);
+        }
+        return false;
     }
 
-    
+
 }
 
 
