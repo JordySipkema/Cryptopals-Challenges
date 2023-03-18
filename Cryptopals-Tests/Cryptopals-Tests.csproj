@@ -21,11 +21,6 @@
     <ProjectReference Include="..\Cryptopals\Cryptopals.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <None Remove="6 %28copy%29.txt" />
-    <None Remove="7 %28copy%29.txt" />
-    <None Remove="8 %28copy%29.txt" />
-    <None Remove="10 %28copy%29.txt" />
-    <None Remove="Files\" />
     <None Remove="Input\10.txt" />
     <None Remove="Input\10-test.txt" />
     <None Remove="Input\12.txt" />

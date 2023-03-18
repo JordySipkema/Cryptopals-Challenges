@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Security.Cryptography;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Cryptopals.SetTwo
 {
@@ -61,7 +59,7 @@ namespace Cryptopals.SetTwo
         public static int DetectBlocksize(CryptoFunction func)
         {
             int inputLength = 1;
-            int outputLength_current = 0;
+            int outputLength_current;
             int outputLength_1char = func(new byte[inputLength]).Length;
 
             do

@@ -8,18 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="SetOne\" />
-    <None Remove="SetTwo\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="SetOne\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Update="4.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="morelinq" Version="3.3.2" />
   </ItemGroup>
 </Project>
