@@ -13,7 +13,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="SetOne\" />
-    <Folder Include="SetTwo\" />
   </ItemGroup>
   <ItemGroup>
     <None Update="4.txt">

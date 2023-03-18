@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Security.Cryptography;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Cryptopals.SetTwo
 {
@@ -31,6 +32,19 @@ namespace Cryptopals.SetTwo
             return block.Take(length).ToArray();
         }
 
+        public static byte[] PadBlockInFront(byte[] block, int blocksize) {
+            int length = block.Length;
+            int modLen = length % blocksize;
+            int paddingToAdd = blocksize - modLen;
+
+            Span<byte> destination = new byte[length + paddingToAdd];
+
+            destination.Fill(0x00);
+            block.CopyTo(destination.Slice(paddingToAdd, block.Length));
+
+            return destination.ToArray();
+        }
+
         public static byte[] XOR(byte[] data, byte[] key)
         {
             int keyLen = key.Length;
@@ -56,8 +70,7 @@ namespace Cryptopals.SetTwo
                 outputLength_current = func(new byte[inputLength]).Length;
             } while (outputLength_1char == outputLength_current);
 
-            return outputLength_1char;
+            return outputLength_current - outputLength_1char;
         }
-
     }
 }

@@ -17,6 +17,7 @@ namespace Cryptopals.SetTwo
             "YnkK"
             );
 
+
         public EncryptionOracle() { }
 
         public static byte[] Aes128EcbEncrypt(byte[] data)

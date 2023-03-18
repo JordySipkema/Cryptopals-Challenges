@@ -3,9 +3,7 @@ using System.Text;
 using FluentAssertions;
 using Cryptopals.SetTwo;
 using Cryptopals.SetOne;
-using Microsoft.VisualStudio.TestPlatform.ObjectModel;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-using System.Drawing;
+using Cryptopals.Helpers;
 
 namespace Cryptopals_Tests
 {
@@ -133,39 +131,33 @@ namespace Cryptopals_Tests
         }
 
         [TestMethod]
-        public void Test_12_EcbDecryptionSimple()
-        {
-            string inputB64 = File.ReadAllText("./Input/10.txt");
-            byte[] input = Convert.FromBase64String(inputB64);
-
-            //EncryptionOracle.Aes128EcbEncrypt();
-        }
-
-        [TestMethod]
         public void Test_12_DetectBlocksize()
         {
             Crypto.DetectBlocksize(EncryptionOracle.Aes128EcbEncrypt).Should().Be(16);
         }
 
+        [TestMethod]
+        public void Test_12_PadBlockInFront() {
+            byte[] input = Encoding.UTF8.GetBytes("YELLOW SUBMARINE");
+            byte[] expected = Encoding.UTF8.GetBytes("\x00\x00\x00\x00YELLOW SUBMARINE");
 
-        //Feed identical bytes of your-string to the function 1 at a time
-        //--- start with 1 byte ("A"), then "AA", then "AAA" and so on.
-        //Discover the block size of the cipher.You know it, but do this step anyway.
+            byte[] result = Crypto.PadBlockInFront(input, 20);
 
-        //Detect that the function is using ECB. You already know, but do this step anyways.
+            result.Should().BeEquivalentTo(expected);
+        }
 
-        //Knowing the block size, craft an input block that is exactly 1 byte short
-        //(for instance, if the block size is 8 bytes, make "AAAAAAA").
-        //Think about what the oracle function is going to put in that last byte position.
+        [TestMethod]
+        public void Test_12_EcbDecryptionSimple() {
+            string inputB64 = File.ReadAllText("./Input/12.txt");
+            byte[] input = Convert.FromBase64String(inputB64);
+                      
+            var underTest = new AesEcbDecryptor(EncryptionOracle.Aes128EcbEncrypt);
+            var plaintext = underTest.Decrypt();
 
-        //Make a dictionary of every possible last byte by feeding different strings to the oracle;
-        //for instance, "AAAAAAAA", "AAAAAAAB", "AAAAAAAC", remembering the first block of each invocation.
+            var result = Encoding.UTF8.GetString(plaintext);
 
-        //Match the output of the one-byte-short input to one of the entries in your dictionary.
-        //You've now discovered the first byte of unknown-string.
-
-        //Repeat for the next byte.
-
+            plaintext.Should().BeEquivalentTo(input);
+        }
     }
 }
 
