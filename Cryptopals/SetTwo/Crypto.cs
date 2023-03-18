@@ -5,9 +5,9 @@ namespace Cryptopals.SetTwo
 {
     public class Crypto
     {
-        public Crypto()
-        {
-        }
+        public delegate byte[] CryptoFunction(byte[] data);
+
+        public Crypto() { }
 
         public static byte[] PadBlock(byte[] block, int blocksize)
         {
@@ -43,5 +43,21 @@ namespace Cryptopals.SetTwo
 
             return result;
         }
+
+        public static int DetectBlocksize(CryptoFunction func)
+        {
+            int inputLength = 1;
+            int outputLength_current = 0;
+            int outputLength_1char = func(new byte[inputLength]).Length;
+
+            do
+            {
+                inputLength++;
+                outputLength_current = func(new byte[inputLength]).Length;
+            } while (outputLength_1char == outputLength_current);
+
+            return outputLength_1char;
+        }
+
     }
 }
