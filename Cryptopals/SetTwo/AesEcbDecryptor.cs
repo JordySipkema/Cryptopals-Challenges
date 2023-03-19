@@ -18,6 +18,8 @@ namespace Cryptopals.SetTwo {
         /// </summary>
         /// <returns>The decrypted string</returns>
         public byte[] Decrypt() {
+            // TODO: Optimize by paralellization.
+            // Chunk in blocks equal to blocksize, decrypt them at the same time.
             int bytesToDecrypt = cryptoFunction(Array.Empty<byte>()).Length;
             byte[] decrypted = DecryptByteAtATime(Array.Empty<byte>(), bytesToDecrypt);
 

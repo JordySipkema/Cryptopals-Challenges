@@ -160,6 +160,41 @@ namespace Cryptopals_Tests
         }
 
         [TestMethod]
+        public void Test_13_EcbCutAndPaste()
+        {
+            /* 
+             * email=foo@foobar     Keep (1)
+             * admin***********     This should become the last block (3)
+             * .nl&uid=10&role=     Keep (2)
+             * user                 Discard
+             * 
+             * *** = PCKS7 padding
+             */
+
+            // Setup:
+            byte[] admin = Crypto.PadBlock(Encoding.UTF8.GetBytes("admin"), 16);
+            string rogueEmail = "foo@foobar" +
+                Encoding.UTF8.GetString(admin) +
+                ".nl";
+
+            byte[] cookie = Cookie.GetProfileFor(rogueEmail);
+
+            // Extract parts of the rogue cookie
+            byte[] emailPart = cookie.Take(16).ToArray();
+            byte[] adminPart = cookie.Skip(16).Take(16).ToArray();
+            byte[] uidPart = cookie.Skip(32).Take(16).ToArray();
+
+            // Construct the new cookie
+            byte[] newCookie = ByteArray.Concat(emailPart, uidPart, adminPart);
+            Cookie rogueCookie = Cookie.AuthenticateUser(newCookie);
+
+            rogueCookie.IsAdmin().Should().Be(true);
+            rogueCookie.GetString().Should().Be("email=foo@foobar.nl&uid=10&role=admin");
+        }
+
+        // TODO: 14
+
+        [TestMethod]
         public void Test_15_PCKS7_Padding_Validation_Succes()
         {
             byte[] input = Encoding.UTF8.GetBytes("ICE ICE BABY\x04\x04\x04\x04");

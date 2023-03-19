@@ -4,7 +4,17 @@
         public static byte[] Concat(byte[] first, byte[] second) {
             byte[] result = new byte[first.Length + second.Length];
             first.CopyTo(result, 0);
-            second.CopyTo(first, second.Length);
+            second.CopyTo(result, second.Length);
+
+            return result;
+        }
+
+        public static byte[] Concat(byte[] first, byte[] second, byte[] third)
+        {
+            byte[] result = new byte[first.Length + second.Length + third.Length];
+            first.CopyTo(result, 0);
+            second.CopyTo(result, second.Length);
+            third.CopyTo(result, first.Length + second.Length);
 
             return result;
         }
