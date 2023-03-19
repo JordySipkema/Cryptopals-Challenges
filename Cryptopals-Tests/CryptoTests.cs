@@ -158,6 +158,31 @@ namespace Cryptopals_Tests
 
             plaintext.Should().BeEquivalentTo(input);
         }
+
+        [TestMethod]
+        public void Test_15_PCKS7_Padding_Validation_Succes()
+        {
+            byte[] input = Encoding.UTF8.GetBytes("ICE ICE BABY\x04\x04\x04\x04");
+            byte[] expected = Encoding.UTF8.GetBytes("ICE ICE BABY");
+
+            var underTest = Crypto.UnpadBlock(input);
+
+            underTest.Should().BeEquivalentTo(expected);
+        }
+
+        [TestMethod]
+        public void Test_15_PCKS7_Padding_Validation_Failure()
+        {
+            // Test one
+            byte[] inputA = Encoding.UTF8.GetBytes("ICE ICE BABY\x05\x05\x05\x05");
+            Action actionA = () => Crypto.UnpadBlock(inputA);
+            actionA.Should().Throw<Cryptopals.Exceptions.InvalidPaddingException>();
+
+            // Test two
+            byte[] inputB = Encoding.UTF8.GetBytes("ICE ICE BABY\x01\x02\x03\x04");
+            Action actionB = () => Crypto.UnpadBlock(inputB);
+            actionB.Should().Throw<Cryptopals.Exceptions.InvalidPaddingException>();
+        }
     }
 }
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using Cryptopals.Exceptions;
 
 namespace Cryptopals.SetTwo
 {
@@ -22,10 +23,19 @@ namespace Cryptopals.SetTwo
             return destination.ToArray();
         }
 
+        /// <summary>
+        /// Removes the Pkcs7-padding from the given block
+        /// </summary>
+        /// <param name="block">The PKCS7-padded block</param>
+        /// <returns>The unpadded block</returns>
+        /// <exception cref="InvalidPaddingException"></exception>
         public static byte[] UnpadBlock(byte[] block)
         {
             short paddingLength = block.Last();
             int length = block.Length - paddingLength;
+
+            if (!block.Skip(block.Length - paddingLength).All(x => x == paddingLength))
+                throw new InvalidPaddingException();
 
             return block.Take(length).ToArray();
         }
